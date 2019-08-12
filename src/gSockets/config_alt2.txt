@@ -1,0 +1,6 @@
+time3 0 12:00
+waterReset 0
+time2 0 00:00
+level 30
+lastWater 07-06-2017 19:31:13
+time1 0 00:00

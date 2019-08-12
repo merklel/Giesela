@@ -1,0 +1,128 @@
+h1 {
+    color: #088A68;
+    background-color: white;
+	font-family: Helvetica, sans-serif;
+}
+html {
+	background-color: #A7AAAB;
+	font-family: Helvetica, sans-serif;
+
+}
+
+.container {
+	background-color: #FFFFFF;
+	box-shadow: 8px 8px 5px grey;
+	width: 50%;
+	margin: auto;
+	padding-left: 20px;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	overflow: auto;
+}
+
+@media only screen and (max-width: 1000px) {
+    /* For mobile phones: */
+    [class*="container"] {
+        width: 90%;
+    }
+}
+
+.status{
+	background-color: #EEEEEE;
+	width: 30%;
+	margin: auto;
+	padding-left: 20px;
+	margin-right: 20px;
+	padding-top: 10px;
+	float:right;
+	overflow: auto;
+}
+
+.einstellungen{
+	background-color: #EEEEEE;
+	width: 60%;
+	margin: auto;
+	padding-left: 20px;
+	padding-top: 10px;
+	float:left;
+	overflow: auto;
+}
+
+.logfile{
+	background-color: #FFFFFF;
+	width: 90%;
+	height: 20%;
+	margin: 0px;
+	font-family: monospace;
+	font-size: 10;
+	padding-left: 10px;
+	padding-top: 10px;
+	overflow: scroll;
+}
+
+
+.buttons{
+	position: relative;
+}
+.button1 {
+	position: relative;
+	width:150px;
+	height:70px;
+	border: 0;
+	cursor:pointer;
+	font-size:16px;	
+	font-weight: bold;
+	color: white;
+	transition: all 0.3s ease 0s;
+	background-color: #088A68;
+
+}
+.button1:hover {
+	background-color: #04B45F;
+}
+.button1:active {
+	border: 0;
+}
+
+.buttonStatusSeite{
+	position: right;
+	width:100px;
+	height:50px;
+	border: 0;
+	cursor:pointer;
+	font-size:14px;	
+	transition: all 0.3s ease 0s;
+	background-color: #E86F7F;
+}
+.buttonStatusSeite:hover {
+	background-color: #E89BA6;
+}
+.buttonStatusSeite:active {
+	border: 0;
+}
+.buttonTogglePlot{
+	position: right;
+	width:250;
+	height:20px;
+	border: 0;
+	cursor:pointer;
+	font-size:14px;	
+	transition: all 0.3s ease 0s;
+	background-color: #E86F7F;
+}
+.buttonTogglePlot:hover {
+	background-color: #E89BA6;
+}
+.buttonTogglePlot:active {
+	border: 0;
+}
+.color12{
+	position: relative;
+	float:right;
+	height:70;
+	width:150;
+	border:0;
+	cursor:pointer;
+	background-color: #2DB2EB;
+
+}

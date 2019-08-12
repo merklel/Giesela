@@ -1,0 +1,8 @@
+time1 1 20:17
+time2 0 16:05
+time3 0 13:40
+waterReset 0
+level 29.773331
+
+lastWater Tue May  1 12:57:15 2018
+

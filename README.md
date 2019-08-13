@@ -18,7 +18,11 @@ Simple HTML-based interface to control the gisela system. Runs also on the raspb
 ![Giselasystem](doc/gisela_webinterface.png)
 
 ## Hardware
-* Raspberrypi zero
+* Raspberrypi zero gen1 + wifi stick
 * 30l water canister
+* camping water pump, 12V
+* 12V Power supply
+* 2 LEDs, 2 Buttons
+* circuit to manage power supply for pi and pump
 * wooden housing
 * hose and dripper from hardware store

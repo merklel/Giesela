@@ -26,3 +26,6 @@ Simple HTML-based interface to control the gisela system. Runs also on the raspb
 * circuit to manage power supply for pi and pump
 * wooden housing
 * hose and dripper from hardware store
+
+## More  Information
+[More Information Here](https://github.com/merklel/Giesela/blob/master/doc/giesela.pdf)

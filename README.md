@@ -1,7 +1,6 @@
 # Gißela
 **Automates watering the balcony plants**<br>
-This repostiroy holds the source code for the raspberrry pi controlling the watering system and the code for the webinerface to interact with the system. One can choose to start watering up to three times a days for a duration of 60 min in total. Manual enabling is possible via buttons or the webinterface.
-Additionally, one can add an gmail-address and send a *magic email* to the system, which triggers the watering. By using the mail interface, one can easily control from outside the home-network.
+This repository holds the source code for the raspberry pi controlling the watering system and the code for the web interface to interact with the system. One can choose to start watering up to three times a day for a duration of 60 min in total. Manual enabling is possible via buttons or the web interface. Additionally, one can add a gmail-address and send a magic email to the system, which triggers the watering. By using the mail interface, one can easily control from outside the home network.
 
 ![Giselasystem](doc/overallSystem.jpg)
 

@@ -8,7 +8,7 @@ This repository holds the source code for the raspberry pi controlling the water
 
 ### Control Software
 * C++ written, multithreading to control the waterpump and polling buttons
-* watches for *magic email*
+* listening for *magic email*
 * keeps track of used water by integrating a fixed rate over time
 * unix-sockets deal with the communication to the php backend of the webinterface.
 

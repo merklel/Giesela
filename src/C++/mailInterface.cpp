@@ -93,8 +93,8 @@ int Gisela::readMails() {
 
             for(int i=0; i < unseenMailId.size(); ++i) {
                 /* Set username and password */
-                curl_easy_setopt(curl, CURLOPT_USERNAME, "gieselagreter21@gmail.com");
-                curl_easy_setopt(curl, CURLOPT_PASSWORD, "FernseherLampeSchrank43");
+                curl_easy_setopt(curl, CURLOPT_USERNAME, GMAIL_ADDRESS);
+                curl_easy_setopt(curl, CURLOPT_PASSWORD, GMAIL_PW);
 
                 /* This will fetch message 1 from the user's inbox */
                 //curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "SEARCH UNSEEN");

@@ -12,4 +12,4 @@ set (Tutorial_VERSION_MINOR 1)
 
 
 add_executable(gisela main.cpp gisela.cpp mailInterface.cpp UnixSocket.h UnixSocket.cpp hardware.cpp)
-target_link_libraries(gisela stdc++ curl pthread wiringPi)
+target_link_libraries(gisela stdc++ curl pthread pigpio)

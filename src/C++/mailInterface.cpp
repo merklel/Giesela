@@ -12,7 +12,7 @@ static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *use
 int Gisela::checkForNewMails() {
 
     CURL *curl;
-    CURLcode res = CURLE_OK;
+//    CURLcode res = CURLE_OK;
     curl = curl_easy_init();
     std::string readBuffer;
 
@@ -73,6 +73,7 @@ int Gisela::checkForNewMails() {
         }
         //-----------------------------------------------------------------------
     }
+    return 0;
 }
 
 

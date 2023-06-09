@@ -14,10 +14,10 @@ int Button::get_status(){
 	if (status != 0){
 		usleep(30000); // 0,03s warten zum entprellen
 
-		if (gpioRead(pin) != 0){
+		if (gpioRead(pin) != 1){
 			usleep(600000); // 0.6 sekunden warten
 
-			if (gpioRead(pin) != 0){
+			if (gpioRead(pin) != 1){
 				status = 2;
 			}else{
 				status = 1;

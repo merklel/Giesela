@@ -15,10 +15,8 @@
 #include <vector>
 #include <thread>
 #include <chrono>
-#include <wiringPi.h>
 #include "UnixSocket.h"
 #include "hardware.hpp"
-#include <wiringPi.h>
 #include "UnixSocket.h"
 
 #define CONFIG_FILE "/home/pi/gisela/gSockets/config.txt"

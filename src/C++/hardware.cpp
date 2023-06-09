@@ -1,5 +1,5 @@
 #include "hardware.hpp"
-#include <wiringPi.h>
+#include <pigpio.h>
 
 
 //--------------- Definition of ButtonCode -----------------
@@ -9,15 +9,15 @@ Button::Button(int hwpin){
 }
 
 int Button::get_status(){
-	status = digitalRead(pin);
+    status = gpioRead(pin);
 
 	if (status != 0){
 		usleep(30000); // 0,03s warten zum entprellen
 
-		if (digitalRead(pin) != 0){
+		if (gpioRead(pin) != 0){
 			usleep(600000); // 0.6 sekunden warten
 
-			if (digitalRead(pin) != 0){
+			if (gpioRead(pin) != 0){
 				status = 2;
 			}else{
 				status = 1;
@@ -50,12 +50,12 @@ int Led::get_pin(){
 }
 
 void Led::switch_on(){
-	digitalWrite(pin, 1);
+    gpioWrite(pin, 1);
 	status = 1;
 }
 
 void Led::switch_off(){
-	digitalWrite(pin, 0);
+    gpioWrite(pin, 0);
 	status = 0;
 }
 //----------------------------------------------------------
@@ -78,12 +78,12 @@ int Pumpe::get_status(){
 }
 
 void Pumpe::switch_on(){
-	digitalWrite(pin, 1);
+    gpioWrite(pin, 1);
 	status = 1;
 }
 
 void Pumpe::switch_off(){
-	digitalWrite(pin, 0);
+    gpioWrite(pin, 0);
 	status = 0;
 }
 
@@ -107,17 +107,17 @@ Hardware::Hardware(){
 
 int Hardware::initGpio() {
 
-    wiringPiSetup();
+    gpioInitialise();
 
-    pinMode(PIN_PUMPE, OUTPUT);
-    pinMode(PIN_LED_GRUEN, OUTPUT);
-    pinMode(PIN_LED_ROT, OUTPUT);
-    pinMode(PIN_TASTER_GRUEN, INPUT);
-    pinMode(PIN_TASTER_ROT, INPUT);
+    gpioSetMode(PIN_PUMPE, PI_OUTPUT);
+    gpioSetMode(PIN_LED_GRUEN, PI_OUTPUT);
+    gpioSetMode(PIN_LED_ROT, PI_OUTPUT);
+    gpioSetMode(PIN_TASTER_GRUEN, PI_INPUT);
+    gpioSetMode(PIN_TASTER_ROT, PI_INPUT);
 
-    digitalWrite(PIN_PUMPE, 0);
-    digitalWrite(PIN_LED_GRUEN, 0);
-    digitalWrite(PIN_LED_ROT, 0);
+    gpioWrite(PIN_PUMPE, 0);
+    gpioWrite(PIN_LED_GRUEN, 0);
+    gpioWrite(PIN_LED_ROT, 0);
 
     return 0;
 }

@@ -164,11 +164,9 @@ int Gisela::readMails() {
 }
 
 
-
 void Gisela::MailServer_thread(){
 
-
-    while(1){
+    while(true){
 
         std::this_thread::sleep_for(std::chrono::seconds(10));
 
@@ -178,7 +176,6 @@ void Gisela::MailServer_thread(){
 
     }
 }
-
 
 
 void Gisela::startMailServer(){

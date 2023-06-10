@@ -82,7 +82,8 @@ public:
 	// Funktionen definiert in Mailinterface.cpp
 	int checkForNewMails();
     int readMails();
-    void MailServer_thread();
+
+    [[noreturn]] void MailServer_thread();
     void startMailServer();
     int getTriggerMailStatus();
     void resetTriggerMailStatus();

@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 2.9)
 
 project (gisela)
 
@@ -11,5 +11,5 @@ set (Tutorial_VERSION_MAJOR 0)
 set (Tutorial_VERSION_MINOR 1)
 
 
-add_executable(gisela main.cpp gisela.cpp mailInterface.cpp UnixSocket.h UnixSocket.cpp hardware.cpp)
-target_link_libraries(gisela stdc++ curl pthread pigpio)
+add_executable(gisela main.cpp gisela.cpp mailInterface.cpp UnixSocket.h UnixSocket.cpp hardware.cpp restapi.cpp restapi.hpp restapi_controller.cpp restapi_controller.h DTOs.hpp)
+target_link_libraries(gisela stdc++ curl pthread pigpio oatpp)

@@ -40,6 +40,8 @@ Gisela::Gisela() {
     tank        = new Tank(TANKVOLUME, TANKVOLUME);
     hardware    = new Hardware();
     unixSocket1 = new UnixSocket(SOCKET_PATH);
+    restApi     = new RestApi();
+    restApi->setGisela(this);
 
     clock_gettime(CLOCK_REALTIME, &startTime);
     std::cout << ctime(&startTime.tv_sec) << std::endl;
@@ -277,9 +279,9 @@ void Gisela::stopGiessen() {
 }
 
 
-int Gisela::operating(){
+[[noreturn]] int Gisela::operating(){
     // Funktion beinhaltet den Main-while(1) Loop
-    while(1){
+    while(true){
         usleep(5000);
          //std::cout << "..." << std::endl;
         //this->hardware->led_gruen->switch_on();
@@ -300,7 +302,6 @@ int Gisela::operating(){
         if (!socketdata.empty()){
             std::cout << "Input from Socket: "<< socketdata << std::endl;
         }
-
 
         
         // Poll Buttons

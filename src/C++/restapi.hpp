@@ -22,7 +22,7 @@
 #include "oatpp/parser/json/mapping/ObjectMapper.hpp"
 #include "oatpp/core/macro/component.hpp"
 
-
+class Gisela;
 class RestApi{
 private:
     int RestApi_thread();
@@ -31,6 +31,11 @@ public:
     //Konstruktor und Destruktor
     RestApi();
     ~RestApi();
+
+    void setGisela(Gisela * gisela);
+
+    bool trigger_giessen = false;
+    Gisela * gisela;
 
     void startRestApi();
 

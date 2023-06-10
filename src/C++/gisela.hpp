@@ -94,7 +94,7 @@ public:
     void startGiessen(int giessdauer_s_arg);
 	void stopGiessen();
 
-	int operating();
+    [[noreturn]] int operating();
 };
 
 

@@ -2,9 +2,18 @@
 #include "./restapi_controller.h"
 #include "oatpp/network/Server.hpp"
 #include <iostream>
+#include "oatpp/web/server/api/ApiController.hpp"
+
 //
 // Created by lukas on 10.06.23.
 //
+
+RestApi::RestApi() {
+}
+
+void RestApi::setGisela(Gisela *gisela) {
+    this->gisela = gisela;
+}
 
 void RestApi::run() {
 
@@ -14,8 +23,10 @@ void RestApi::run() {
     /* Get router component */
     OATPP_COMPONENT(std::shared_ptr<oatpp::web::server::HttpRouter>, router);
 
+    OATPP_COMPONENT(std::shared_ptr<MyController::ObjectMapper>, objectMapper);
+
     /* Create MyController and add all of its endpoints to router */
-    router->addController(std::make_shared<MyController>());
+    router->addController(std::make_shared<MyController>(objectMapper, this->gisela));
 
     /* Get connection handler component */
     OATPP_COMPONENT(std::shared_ptr<oatpp::network::ConnectionHandler>, connectionHandler);
@@ -57,9 +68,6 @@ void RestApi::startRestApi(){
     socketThread.detach();
 }
 
-RestApi::RestApi() {
-
-}
 RestApi::~RestApi() {
 
 }

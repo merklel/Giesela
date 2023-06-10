@@ -18,7 +18,7 @@
 #include "UnixSocket.h"
 #include "hardware.hpp"
 #include "UnixSocket.h"
-
+#include "restapi.hpp"
 #define CONFIG_FILE "/home/pi/gisela/gSockets/config.txt"
 #define LOG_FILE "/home/pi/gisela/gSockets/log.txt"
 #define SOCKET_PATH "/home/pi/gisela/gSockets/gSocketCpp.sock"
@@ -63,6 +63,7 @@ public:
 	Tank * tank;
 	UnixSocket * unixSocket1;
 	Hardware * hardware;
+	RestApi * restApi;
 
 	//Konstruktor
 	Gisela();

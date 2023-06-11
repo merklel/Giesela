@@ -1,0 +1,101 @@
+<html>
+	<head>
+		<link href="designV2.css" type="text/css" rel="stylesheet">
+		<title>Gi&szligela</title>
+		<link rel="icon" href="favicon.png" type="image/png" />
+
+    <script src="jquery-3.6.0.min.js"></script>
+		<script>
+
+      api_url = "192.168.1.45"
+      api_port = "8000"
+      
+
+      function save_settings(){
+        console.log("Save settings")
+      }
+
+
+      function buttonGiessen(duration) {
+        $.ajax({
+            type: "POST",
+            async: false,
+            url: "http://" + api_url + ":" + api_port + "/giessen",
+            data: JSON.stringify({ "duration": Number(duration) }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+            success: function(result) {
+                console.log("giessen result: ", result)
+            }
+        })
+    }
+
+			function buttonGiessen_DEPPRECATED(str) {
+			if (str.length == 0) {
+				document.getElementById("status").innerHTML = "Nicht geklappt!";
+				return;
+			} else {
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.onreadystatechange = function() {
+					if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+						document.getElementById("status").innerHTML = xmlhttp.responseText;
+					}
+				};
+				
+				if (str == '2G'){
+					document.getElementById("status").innerHTML = document.getElementById("colorpick").value;
+					xmlhttp.open("GET", "send.php?value=" + str + document.getElementById("colorpick").value.substring(1,7), true);
+					xmlhttp.send();
+				}else{
+					xmlhttp.open("GET", "send.php?value=" + str, true);
+					xmlhttp.send();
+				}
+			}
+		}
+		</script>
+	</head>
+	<body>	
+		<div class="container">
+				<h1 id="ueberschrift"> Gie&szligela gie&szligt den Balkon</h1><br/><br/>
+				
+				<button class="button1" name="jetztGiesen" type="submit" value=1 onclick="buttonGiessen('1')">jetzt Gie&szligen!</button>
+				<br/>
+				<br/>
+				
+				<div class="status">
+					<h2>Status</h2>
+					<p><b>letzter Gießzeitpunkt:</b> <br/>
+					HERE GOES THE Gieszeitpunkt</p>
+					<p><b>Wasserstand:</b> Wasserstand in l</p>
+				</div>
+				
+				<div class="einstellungen">
+					<h2>Einstellungen</h2>
+					<p>
+					<form onSubmit=save_settings() action="#">
+					<b>Automatisches Gie&szligen zu folgenden Zeitpunkten:</b>
+					<p>
+					Gie&szlig-Zeitpunkt 1:<input type="checkbox" name="flag_time1"><input type="time" name="time1" value=time1> Dauer: <input type="number" min="1" max="20" name="gime1" value="dur1"> Minuten<br/>
+					Gie&szlig-Zeitpunkt 2:<input type="checkbox" name="flag_time2"><input type="time" name="time2" value=time2> Dauer: <input type="number" min="1" max="20" name="gime2" value="dur2"> Minuten<br/>
+					Gie&szlig-Zeitpunkt 3:<input type="checkbox" name="flag_time3"><input type="time" name="time3" value=time3> Dauer: <input type="number" min="1" max="20" name="gime3" value="dur3"> Minuten<br/>
+					<p>
+					Wasserstand zur&uuml;cksetzen: <input type="checkbox" name="flag_resetWater"><br/>
+					<input type="submit" value="speichern">
+					<br/>
+					<br/>
+				</div>
+
+
+				<div class="einstellungen">
+					<h2>Log-File</h2>
+					<div class=logfile>
+            HERE WILL THE LOGFILE BE!
+					</div>
+				</div>
+
+
+		</div>
+	
+	</body>
+</html>

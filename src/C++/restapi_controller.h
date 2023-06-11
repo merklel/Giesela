@@ -51,7 +51,7 @@ public:
         auto dto = MyDto::createShared();
         dto->statusCode = 200;
         dto->message = "giessen gestartet!";
-        std::async(&Gisela::funktionGiessen, gisela, waterDto->durationSeconds);
+        std::async(std::launch::async, &Gisela::funktionGiessen, gisela, waterDto->durationSeconds);
         //gisela->funktionGiessen(waterDto->durationSeconds);
 
         return createDtoResponse(Status::CODE_200, dto);

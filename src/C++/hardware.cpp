@@ -1,5 +1,6 @@
 #include "hardware.hpp"
 #include <pigpio.h>
+#include <iostream>
 
 
 //--------------- Definition of ButtonCode -----------------
@@ -107,7 +108,14 @@ Hardware::Hardware(){
 
 int Hardware::initGpio() {
 
-    gpioInitialise();
+    if (gpioInitialise() < 0)
+    {
+        std::cout << "Initialized pigpio failed!" << std::endl;
+    }
+    else
+    {
+        std::cout << "Initialized pigpio: ok!" << std::endl;
+    }
 
     gpioSetMode(PIN_PUMPE, PI_OUTPUT);
     gpioSetMode(PIN_LED_GRUEN, PI_OUTPUT);

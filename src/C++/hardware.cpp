@@ -116,8 +116,8 @@ int Hardware::initGpio() {
     gpioSetMode(PIN_TASTER_ROT, PI_INPUT);
 
     gpioWrite(PIN_PUMPE, 0);
-    gpioWrite(PIN_LED_GRUEN, 0);
-    gpioWrite(PIN_LED_ROT, 0);
+    gpioWrite(PIN_LED_GRUEN, 1);
+    gpioWrite(PIN_LED_ROT, 1);
 
     return 0;
 }

@@ -45,6 +45,7 @@ public:
         return createDtoResponse(Status::CODE_200, dto);
     }
 
+    ADD_CORS(water)
     ENDPOINT("POST", "/giessen", water, BODY_DTO(Object<WaterDto>, waterDto)) {
 
         auto dto = MyDto::createShared();
@@ -56,6 +57,7 @@ public:
         return createDtoResponse(Status::CODE_200, dto);
     }
 
+    ADD_CORS(settings)
     ENDPOINT("POST", "/save_settings", settings, BODY_DTO(Object<SettingsDto>, settingsDto)) {
 
         auto dto = MyDto::createShared();

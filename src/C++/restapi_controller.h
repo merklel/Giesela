@@ -40,11 +40,18 @@ public:
         auto dto = MyDto::createShared();
         dto->statusCode = 200;
         dto->message = "Hello World!";
-        gisela->funktionGiessen(30);
         return createDtoResponse(Status::CODE_200, dto);
     }
 
     // TODO Insert Your endpoints here !!!
+
+    ENDPOINT("POST", "/giessen", root) {
+        auto dto = MyDto::createShared();
+        dto->statusCode = 200;
+        dto->message = "Gießen gestartet!";
+        gisela->funktionGiessen(30);
+        return createDtoResponse(Status::CODE_200, dto);
+    }
 
 };
 

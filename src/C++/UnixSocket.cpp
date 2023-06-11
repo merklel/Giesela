@@ -37,7 +37,7 @@ void UnixSocket::SocketServer_thread() {
     }
 
     //Setzte Berechtigungen
-    system("chmod 777 /home/pi/gisela/gSockets/gSocketCpp.sock");
+    system("chmod 777 /home/pi/Gisela/gSockets/gSocketCpp.sock");
 
     //Start listening...
     listen(sock, 5);

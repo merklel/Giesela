@@ -63,8 +63,9 @@ public:
         auto dto = MyDto::createShared();
         dto->statusCode = 200;
         dto->message = "settings saved!";
-        //Todo settings save
-
+        gisela->set_current_config_via_api(settingsDto->get_slot_string(1),
+                                           settingsDto->get_slot_string(2),
+                                           settingsDto->get_slot_string(3));
         return createDtoResponse(Status::CODE_200, dto);
     }
 };

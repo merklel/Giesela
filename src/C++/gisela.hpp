@@ -79,6 +79,7 @@ public:
 	void writeConfig();
 	void readConfig();
 	void writeLog(std::string message);
+	void set_current_config_via_api(std::string slot1, std::string slot2, std::string slot3);
 
 	// Funktionen definiert in Mailinterface.cpp
 	int checkForNewMails();

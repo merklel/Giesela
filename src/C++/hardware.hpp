@@ -5,11 +5,11 @@
 
 
 // Pindefinitionen Wiring pi Pin nummerierung
-#define PIN_PUMPE 15      // pigpio 14      wiring pi 15
-#define PIN_LED_GRUEN 21  // pigpio 5       wiring pi 21
-#define PIN_LED_ROT 22    // pigpio 6       wiring pi 22
-#define PIN_TASTER_GRUEN 5// pigpio 24      wiring pi
-#define PIN_TASTER_ROT 4  // pigpio 23
+#define PIN_PUMPE 14      // pigpio 14      wiring pi 15
+#define PIN_LED_GRUEN 5  // pigpio 5       wiring pi 21
+#define PIN_LED_ROT 6    // pigpio 6       wiring pi 22
+#define PIN_TASTER_GRUEN 24// pigpio 24      wiring pi 5
+#define PIN_TASTER_ROT 23  // pigpio 23      wiring pi 4
 
 
 

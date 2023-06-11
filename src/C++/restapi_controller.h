@@ -5,7 +5,7 @@
 #ifndef GISELA_RESTAPI_CONTROLLER_H
 #define GISELA_RESTAPI_CONTROLLER_H
 
-
+#include <future>
 #include "DTOs.hpp"
 #include "restapi.hpp"
 
@@ -45,25 +45,26 @@ public:
         return createDtoResponse(Status::CODE_200, dto);
     }
 
-    ENDPOINT("POST", "/giessen", water) {
+    ENDPOINT("POST", "/giessen", water, BODY_DTO(Object<WaterDto>, waterDto)) {
+
         auto dto = MyDto::createShared();
         dto->statusCode = 200;
-        dto->message = "Hello World!";
-        gisela->funktionGiessen(30);
+        dto->message = "giessen gestartet!";
+        std::async(&Gisela::funktionGiessen, gisela, waterDto->durationSeconds);
+        //gisela->funktionGiessen(waterDto->durationSeconds);
 
         return createDtoResponse(Status::CODE_200, dto);
     }
 
-    // TODO Insert Your endpoints here !!!
+    ENDPOINT("POST", "/save_settings", settings, BODY_DTO(Object<SettingsDto>, settingsDto)) {
 
-//    ENDPOINT("POST", "/giessen", root) {
-//        auto dto = MyDto::createShared();
-//        dto->statusCode = 200;
-//        dto->message = "Gießen gestartet!";
-//        gisela->funktionGiessen(30);
-//        return createDtoResponse(Status::CODE_200, dto);
-//    }
+        auto dto = MyDto::createShared();
+        dto->statusCode = 200;
+        dto->message = "settings saved!";
+        //Todo settings save
 
+        return createDtoResponse(Status::CODE_200, dto);
+    }
 };
 
 #include OATPP_CODEGEN_END(ApiController) //<-- End Codegen

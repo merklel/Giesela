@@ -51,11 +51,13 @@ public:
         auto dto = MyDto::createShared();
         dto->statusCode = 200;
         dto->message = "giessen gestartet!";
-        //auto formData = request->readBodyToString();
-        //waterDto = response->readBodyToDto<oatpp::Object<WaterDto>>(objectMapper);
-        auto w = objectMapper->readFromString<oatpp::Object<WaterDto>>(request->readBodyToString());
 
-        std::async(std::launch::async, &Gisela::funktionGiessen, gisela, w->durationSeconds);
+        if(waterDto->durationSeconds) {
+            OATPP_LOGD("giessen", "duration='%s'", waterDto->durationSeconds.get())
+        }
+
+
+        std::async(std::launch::async, &Gisela::funktionGiessen, gisela, 5);
         //gisela->funktionGiessen(waterDto->durationSeconds);
 
         return createDtoResponse(Status::CODE_200, dto);

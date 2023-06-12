@@ -66,7 +66,11 @@ public:
     }
 
     ADD_CORS(settings, "*", "POST, GET", "DNT, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control, Content-Type, Range")
-    ENDPOINT("POST", "/save_settings", settings, BODY_DTO(Object<SettingsDto>, settingsDto)) {
+    ENDPOINT("POST", "/saveSettings", settings, BODY_DTO(Object<SettingsDto>, settingsDto)) {
+
+        OATPP_LOGD("saveSettings", "slot1: %s'", settingsDto->get_slot_string(1))
+        OATPP_LOGD("saveSettings", "slot2: %s'", settingsDto->get_slot_string(2))
+        OATPP_LOGD("saveSettings", "slot3: %s'", settingsDto->get_slot_string(3))
 
         auto dto = MyDto::createShared();
         dto->statusCode = 200;

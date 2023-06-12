@@ -2,3 +2,4 @@ raspi_image/**
 .idea/**
 **/build/**
 **/cmake-build-debug/**
+**/gSockets/**

@@ -22,6 +22,7 @@
 class MyController : public oatpp::web::server::api::ApiController {
 public:
     Gisela *gisela;
+    std::shared_ptr<ObjectMapper> objectMapper;
     /**
      * Constructor with object mapper.
      * @param objectMapper - default object mapper used to serialize/deserialize DTOs.
@@ -33,6 +34,7 @@ public:
     : oatpp::web::server::api::ApiController(objectMapper)
     {
         this->gisela = gisela;
+        this->objectMapper = objectMapper;
     }
 public:
 
@@ -40,24 +42,26 @@ public:
         auto dto = MyDto::createShared();
         dto->statusCode = 200;
         dto->message = "Hello World!";
-        gisela->funktionGiessen(30);
-
         return createDtoResponse(Status::CODE_200, dto);
     }
 
-    ADD_CORS(water, "*", "POST, GET", "DNT, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control, Content-Type, Range")
-    ENDPOINT("POST", "/giessen", water, BODY_DTO(Object<WaterDto>, waterDto)) {
+    //ADD_CORS(water, "*", "POST, GET", "DNT, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control, Content-Type, Range")
+    ENDPOINT("POST", "/giessen", water, BODY_DTO(Object<WaterDto>, waterDto), REQUEST(std::shared_ptr<IncomingRequest>, request)) {
 
         auto dto = MyDto::createShared();
         dto->statusCode = 200;
         dto->message = "giessen gestartet!";
-        std::async(std::launch::async, &Gisela::funktionGiessen, gisela, waterDto->durationSeconds);
+        //auto formData = request->readBodyToString();
+        //waterDto = response->readBodyToDto<oatpp::Object<WaterDto>>(objectMapper);
+        auto w = objectMapper->readFromString<oatpp::Object<WaterDto>>(request->readBodyToString());
+
+        std::async(std::launch::async, &Gisela::funktionGiessen, gisela, w->durationSeconds);
         //gisela->funktionGiessen(waterDto->durationSeconds);
 
         return createDtoResponse(Status::CODE_200, dto);
     }
 
-    ADD_CORS(settings, "*", "POST, GET", "DNT, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control, Content-Type, Range")
+    //ADD_CORS(settings, "*", "POST, GET", "DNT, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control, Content-Type, Range")
     ENDPOINT("POST", "/save_settings", settings, BODY_DTO(Object<SettingsDto>, settingsDto)) {
 
         auto dto = MyDto::createShared();

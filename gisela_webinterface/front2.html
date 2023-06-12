@@ -21,7 +21,7 @@
             type: "POST",
             async: false,
             url: "http://" + api_url + ":" + api_port + "/giessen",
-            data: JSON.stringify({ "duration": Number(duration) }),
+            data: JSON.stringify({ "durationSeconds": Number(duration)}),
             headers: {
                 "Content-Type": "application/json",
             },

@@ -45,7 +45,7 @@ public:
         return createDtoResponse(Status::CODE_200, dto);
     }
 
-    ADD_CORS(water, "*", "POST, GET")
+    ADD_CORS(water, "*", "POST, GET", "DNT, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control, Content-Type, Range")
     ENDPOINT("POST", "/giessen", water, BODY_DTO(Object<WaterDto>, waterDto)) {
 
         auto dto = MyDto::createShared();
@@ -57,7 +57,7 @@ public:
         return createDtoResponse(Status::CODE_200, dto);
     }
 
-    ADD_CORS(settings, "*", "POST, GET")
+    ADD_CORS(settings, "*", "POST, GET", "DNT, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control, Content-Type, Range")
     ENDPOINT("POST", "/save_settings", settings, BODY_DTO(Object<SettingsDto>, settingsDto)) {
 
         auto dto = MyDto::createShared();

@@ -53,7 +53,7 @@ public:
         dto->message = "giessen gestartet!";
 
         if(waterDto->durationSeconds) {
-            OATPP_LOGD("giessen", "duration='%s'", waterDto->durationSeconds.get())
+            OATPP_LOGD("giessen", "duration='%i'", waterDto->durationSeconds.get())
         }
 
 

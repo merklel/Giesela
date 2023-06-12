@@ -53,11 +53,13 @@ public:
         dto->message = "giessen gestartet!";
 
         if(waterDto->durationSeconds) {
-            OATPP_LOGD("giessen", "duration='%i'", waterDto->durationSeconds.get())
+            OATPP_LOGD("giessen", "duration='%d'", waterDto->durationSeconds.getValue(15))
+        }else{
+            OATPP_LOGD("giessen", "No valid giessen body found")
         }
 
 
-        std::async(std::launch::async, &Gisela::funktionGiessen, gisela, 5);
+        std::async(std::launch::async, &Gisela::funktionGiessen, gisela, waterDto->durationSeconds.getValue(15));
         //gisela->funktionGiessen(waterDto->durationSeconds);
 
         return createDtoResponse(Status::CODE_200, dto);

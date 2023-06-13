@@ -1,5 +1,7 @@
 #include "gisela.hpp"
 
+#include <utility>
+
 
 
 //-------------------- Klasse Tank--------------------------------------------
@@ -139,9 +141,9 @@ void Gisela::set_current_config_via_api(std::string slot1, std::string slot2, st
  * This function gets called from the api and alters the internal state of Gisela. This does not
  * persist any config to file.
  */
-    this->config["time1"] = slot1;
-    this->config["time2"] = slot2;
-    this->config["time3"] = slot3;
+    this->config["time1"] = std::move(slot1);
+    this->config["time2"] = std::move(slot2);
+    this->config["time3"] = std::move(slot3);
 }
 
 void Gisela::writeLog(std::string message) {

@@ -95,12 +95,12 @@
           type: "POST",
           async: false,
           url: "http://" + api_url + ":" + api_port + "/saveSettings",
-          data: JSON.stringify({ "durationSeconds": Number(duration)}),
+          data: JSON.stringify(body),
           headers: {
               "Content-Type": "application/json",
           },
           success: function(result) {
-              console.log("giessen result: ", result)
+              console.log("settings got saved", result)
           }
       })
 

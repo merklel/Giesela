@@ -67,22 +67,21 @@ public:
     ADD_CORS(settings, "*", "POST, GET", "DNT, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control, Content-Type, Range")
     ENDPOINT("POST", "/saveSettings", settings, BODY_DTO(Object<SettingsDto>, settingsDto)) {
 
-        OATPP_LOGD("saveSettings", "slot1: %s'", settingsDto->get_slot_string(1))
-        OATPP_LOGD("saveSettings", "slot2: %s'", settingsDto->get_slot_string(2))
-        OATPP_LOGD("saveSettings", "slot3: %s'", settingsDto->get_slot_string(3))
-
+        OATPP_LOGD("saveSettings", "slot1: %s", settingsDto->get_slot_string(1));
+        OATPP_LOGD("saveSettings", "slot2: %s", settingsDto->get_slot_string(2));
+        OATPP_LOGD("saveSettings", "slot3: %s", settingsDto->get_slot_string(3));
 
         auto dto = MyDto::createShared();
         dto->statusCode = 200;
         dto->message = "settings saved!";
-        //gisela->set_current_config_via_api(settingsDto->get_slot_string(1),
-        //                                   settingsDto->get_slot_string(2),
-        //                                   settingsDto->get_slot_string(3));
+        gisela->set_current_config_via_api(settingsDto->get_slot_string(1),
+                                           settingsDto->get_slot_string(2),
+                                           settingsDto->get_slot_string(3));
         return createDtoResponse(Status::CODE_200, dto);
     }
 
     ADD_CORS(getSettings, "*", "POST, GET", "DNT, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control, Content-Type, Range")
-    ENDPOINT("GET", "/getSettings", getSettings, BODY_DTO(Object<GetSettingsDto>, getSettingsDto)) {
+    ENDPOINT("GET", "/getSettings", getSettings) {
         auto dto = GetSettingsDto::createShared();
         auto conf = gisela->config;
         dto->t_slot1 = gisela->config["time1"];

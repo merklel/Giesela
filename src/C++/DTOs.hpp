@@ -55,15 +55,15 @@ class SettingsDto:public oatpp::DTO {
 
     std::string get_slot_string(int slot){
         if (slot == 1){
-            std::string slot1 = "time1 " + std::string(b_slot1 ? "1" : "0") + " " +  t_slot1 + " ;" + std::to_string(duration_slot1);
+            std::string slot1 = "time1 " + std::string(b_slot1.getValue(false) ? "1" : "0") + " " +  t_slot1.getValue("") + " ;" + std::to_string(duration_slot1.getValue(0));
             return slot1;
         }
         if (slot == 2){
-            std::string slot1 = "time2 " + std::string(b_slot2 ? "1" : "0") + " " +  t_slot2 + " ;" + std::to_string(duration_slot2);
+            std::string slot1 = "time2 " + std::string(b_slot2.getValue(false) ? "1" : "0") + " " +  t_slot2.getValue("") + " ;" + std::to_string(duration_slot2.getValue(0));
             return slot1;
         }
         if (slot == 3){
-            std::string slot1 = "time3 " + std::string(b_slot3 ? "1" : "0") + " " +  t_slot3 + " ;" + std::to_string(duration_slot3);
+            std::string slot1 = "time3 " + std::string(b_slot3.getValue(false) ? "1" : "0") + " " +  t_slot3.getValue("") + " ;" + std::to_string(duration_slot3.getValue(0));
             return slot1;
         }
 

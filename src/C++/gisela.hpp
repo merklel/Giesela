@@ -49,7 +49,6 @@ private:
 		int giessenActive;
 		struct timespec startTime;
 		time_t lastGiessTime;
-		std::map <std::string, std::string> config;
         std::vector<int> unseenMailId;
         int giessdauer_s;
 		int flag_stop_giessen;
@@ -64,6 +63,7 @@ public:
 	UnixSocket * unixSocket1;
 	Hardware * hardware;
 	RestApi * restApi;
+	std::map <std::string, std::string> config;
 
 	//Konstruktor
 	Gisela();

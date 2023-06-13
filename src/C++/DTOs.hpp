@@ -24,6 +24,22 @@ class WaterDto:public oatpp::DTO {
     DTO_FIELD(Int32, durationSeconds);
 };
 
+class GetSettingsDto:public oatpp::DTO {
+    DTO_INIT(GetSettingsDto, DTO);
+    DTO_FIELD(Boolean, b_slot1);
+    DTO_FIELD(Boolean, b_slot2);
+    DTO_FIELD(Boolean, b_slot3);
+    DTO_FIELD(String, t_slot1);
+    DTO_FIELD(String, t_slot2);
+    DTO_FIELD(String, t_slot3);
+    DTO_FIELD(Int32, duration_slot1);
+    DTO_FIELD(Int32, duration_slot2);
+    DTO_FIELD(Int32, duration_slot3);
+    DTO_FIELD(String, lastWater);
+    DTO_FIELD(Int32 , level);
+
+};
+
 class SettingsDto:public oatpp::DTO {
     DTO_INIT(SettingsDto, DTO);
     DTO_FIELD(Boolean, b_slot1);

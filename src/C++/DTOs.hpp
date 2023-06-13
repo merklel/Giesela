@@ -35,9 +35,7 @@ class SettingsDto:public oatpp::DTO {
     DTO_FIELD(Int32, duration_slot1);
     DTO_FIELD(Int32, duration_slot2);
     DTO_FIELD(Int32, duration_slot3);
-    DTO_FIELD(Float64, level);
     DTO_FIELD(Boolean, waterReset);
-    DTO_FIELD(String , lastWater);
 
     std::string get_slot_string(int slot){
         if (slot == 1){

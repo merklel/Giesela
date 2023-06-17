@@ -490,6 +490,8 @@ void Gisela::stopGiessen() {
 
         for(int i=0; i < 3; ++i){
             std::cout << "S: " << gmtime(&times[i])->tm_hour << " I:" << hour << std::endl;
+            std::cout << "S: " << gmtime(&times[i])->tm_min << " I:" << minute << std::endl;
+            std::cout << "B: " << b_slots[i] << std::endl;
             if (gmtime(&times[i])->tm_hour == hour && gmtime(&times[i])->tm_min == minute && b_slots[i]){
                 if (trigger_regel == 0){
                     std::cout << "From new config: Slot " << i << " aktiv!" << std::endl;

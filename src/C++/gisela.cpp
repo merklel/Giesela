@@ -489,6 +489,7 @@ void Gisela::stopGiessen() {
         std::vector<int> dur_slots = this->get_dur_slots();
 
         for(int i=0; i < 3; ++i){
+            std::cout <<times[i]<<std::endl;
             if (gmtime(&times[i])->tm_hour == hour && gmtime(&times[i])->tm_min == minute && b_slots[i]){
                 if (trigger_regel == 0){
                     std::cout << "From new config: Slot " << i << " aktiv!" << std::endl;

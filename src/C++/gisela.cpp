@@ -218,17 +218,17 @@ std::vector<time_t> Gisela::get_times(){
 
 std::vector<bool> Gisela::get_b_slots(){
     std::vector<bool> b_slots;
-    b_slots.push_back(maketime(this->config2["b_slot1"]));
-    b_slots.push_back(maketime(this->config2["b_slot2"]));
-    b_slots.push_back(maketime(this->config2["b_slot3"]));
+    b_slots.push_back(this->config2["b_slot1"]);
+    b_slots.push_back(this->config2["b_slot2"]);
+    b_slots.push_back(this->config2["b_slot3"]);
     return b_slots;
 }
 
 std::vector<int> Gisela::get_dur_slots(){
     std::vector<int> d_slots;
-    d_slots.push_back(maketime(this->config2["dur_slot1"]));
-    d_slots.push_back(maketime(this->config2["dur_slot2"]));
-    d_slots.push_back(maketime(this->config2["dur_slot3"]));
+    d_slots.push_back(this->config2["dur_slot1"]);
+    d_slots.push_back(this->config2["dur_slot2"]);
+    d_slots.push_back(this->config2["dur_slot3"]);
     return d_slots;
 }
 

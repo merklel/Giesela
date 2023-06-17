@@ -78,8 +78,8 @@ public:
                                            settingsDto->b_slot2.getValue(false),
                                            settingsDto->b_slot3.getValue(false),
                                            settingsDto->t_slot1.getValue("10:00"),
-                                           settingsDto->t_slot1.getValue("10:00"),
-                                           settingsDto->t_slot1.getValue("10:00"),
+                                           settingsDto->t_slot2.getValue("10:00"),
+                                           settingsDto->t_slot3.getValue("10:00"),
                                            settingsDto->duration_slot1.getValue(5),
                                            settingsDto->duration_slot2.getValue(5),
                                            settingsDto->duration_slot3.getValue(5));

@@ -226,9 +226,9 @@ std::vector<bool> Gisela::get_b_slots(){
 
 std::vector<int> Gisela::get_dur_slots(){
     std::vector<int> d_slots;
-    d_slots.push_back(this->config2["dur_slot1"]);
-    d_slots.push_back(this->config2["dur_slot2"]);
-    d_slots.push_back(this->config2["dur_slot3"]);
+    d_slots.push_back(this->config2["duration_slot1"]);
+    d_slots.push_back(this->config2["duration_slot2"]);
+    d_slots.push_back(this->config2["duration_slot3"]);
     return d_slots;
 }
 

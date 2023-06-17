@@ -25,6 +25,7 @@
 #define LPERM 0.34 //Evtl anpassen auf 0.36 nach 1 Tag test
 #define LPERS (0.34/60)
 #define TANKVOLUME 30
+#include "nlohmann/json.hpp"
 
 
 

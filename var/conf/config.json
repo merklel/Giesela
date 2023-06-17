@@ -8,5 +8,6 @@
   "duration_slot1": 5,
   "duration_slot2": 5,
   "duration_slot3": 5,
-  "waterReset": true
+  "waterReset": true,
+  "lastWater": ""
 }

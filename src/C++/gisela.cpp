@@ -201,6 +201,37 @@ std::map<std::string, std::string> Gisela::getConfig() {
     return config;
 }
 
+time_t maketime(std::string input){
+    struct tm tm;
+    strptime(input.c_str(), "%H:%M", &tm);
+    time_t t = mktime(&tm);
+    return t;
+}
+
+std::vector<time_t> Gisela::get_times(){
+    std::vector<time_t> times;
+    times.push_back(maketime(this->config2["t_slot1"]));
+    times.push_back(maketime(this->config2["t_slot2"]));
+    times.push_back(maketime(this->config2["t_slot3"]));
+    return times;
+}
+
+std::vector<bool> Gisela::get_b_slots(){
+    std::vector<bool> b_slots;
+    b_slots.push_back(maketime(this->config2["b_slot1"]));
+    b_slots.push_back(maketime(this->config2["b_slot2"]));
+    b_slots.push_back(maketime(this->config2["b_slot3"]));
+    return b_slots;
+}
+
+std::vector<int> Gisela::get_dur_slots(){
+    std::vector<int> d_slots;
+    d_slots.push_back(maketime(this->config2["dur_slot1"]));
+    d_slots.push_back(maketime(this->config2["dur_slot2"]));
+    d_slots.push_back(maketime(this->config2["dur_slot3"]));
+    return d_slots;
+}
+
 void Gisela::funktionGiessen(int seconds) {
 
 
@@ -407,7 +438,18 @@ void Gisela::stopGiessen() {
         }
 
         // 5. Regelmaessiges giessen checken
+
+        // Hole aktuelle zeit
+        time_t theTime = time(NULL);
+        struct tm *aTime = localtime(&theTime);
+        int hour=aTime->tm_hour;
+        int minute=aTime->tm_min;
+
+        int gies_t_min=0;
+
+        // --- Deprecated: Aus alter config ---------------------------------------------------
         // Hole die drei configs aus dem config map
+        /*
         std::vector<std::string> slots;
         slots.push_back(config["time1"]);
         slots.push_back(config["time2"]);
@@ -426,14 +468,7 @@ void Gisela::stopGiessen() {
             config_gimes.push_back( std::stoi(slots.at(i).substr(pos_gimes_semicolons+1)) );
         }
 
-        // Hole aktuelle zeit
-        time_t theTime = time(NULL);
-        struct tm *aTime = localtime(&theTime);
-        int hour=aTime->tm_hour;
-        int minute=aTime->tm_min;
-
         //std::cout << hour << ":"<< minute<< std::endl;
-        int gies_t_min=0;
         for(int i=0; i < 3; ++i){
             if (slots.at(i).substr(0,1) == "1"){
                 if ((config_hours.at(i) == hour) && (config_minutes.at(i) == minute)){
@@ -442,6 +477,24 @@ void Gisela::stopGiessen() {
                         trigger_regel = 1;
                         gies_t_min = config_gimes.at(i);
                     }
+                }
+            }
+        }
+         */
+
+        // --- New: Aus json config ---------------------------------------------------
+        // automatisches giessen aus config2 lesen
+        std::vector<time_t> times = this->get_times();
+        std::vector<bool> b_slots = this->get_b_slots();
+        std::vector<int> dur_slots = this->get_dur_slots();
+
+        for(int i=0; i < 3; ++i){
+            //struct tm * gmtime (const time_t * timer);
+            if (gmtime(&times[i])->tm_hour == hour && gmtime(&times[i])->tm_min == minute && b_slots[i]){
+                if (trigger_regel == 0){
+                    std::cout << "From new config: Slot " << i << " aktiv!" << std::endl;
+                    trigger_regel = 1;
+                    gies_t_min = dur_slots[i];
                 }
             }
         }

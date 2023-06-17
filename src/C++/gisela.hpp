@@ -93,6 +93,10 @@ public:
 	int checkForNewMails();
     int readMails();
 
+    std::vector<time_t> get_times();
+    std::vector<bool> get_b_slots();
+    std::vector<int> get_dur_slots();
+
     [[noreturn]] void MailServer_thread();
     void startMailServer();
     int getTriggerMailStatus();

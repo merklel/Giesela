@@ -136,16 +136,42 @@ void Gisela::readConfig() {
     file.close();
 }
 
-void Gisela::set_current_config_via_api(std::string slot1, std::string slot2, std::string slot3){
+json Gisela::readJsonConfigFromDisk(){
+    std::ifstream f(CONFIG_JSON);
+    json data = json::parse(f);
+    this->config2 = data;
+    return data;
+}
+
+void Gisela::writeJsonConfigToDisk() {
+    std::ofstream o(CONFIG_JSON);
+    o << std::setw(4) << this->config2 << std::endl;
+}
+
+json Gisela::getJsonConfig(){
+    // returns the current state of the config from inside Gisela class.
+    // Does not re-read from disk
+    return this->config2;
+}
+
+
+void Gisela::set_current_config_via_api(bool b_slot1, bool b_slot2, bool b_slot3, std::string t_slot1, std::string t_slot2, std::string t_slot3, int dur_slot1, int dur_slot2, int dur_slot3){
 /*
  * This function gets called from the api and alters the internal state of Gisela. This does not
  * persist any config to file.
  */
-    this->config["time1"] = slot1;
-    this->config["time2"] = slot2;
-    this->config["time3"] = slot3;
+    this->config2["t_slot1"] = t_slot1;
+    this->config2["t_slot1"] = t_slot2;
+    this->config2["t_slot1"] = t_slot1;
 
-    std::cout << slot1 << slot2 << slot3 <<std::endl;
+    this->config2["b_slot1"] = b_slot1;
+    this->config2["b_slot2"] = b_slot2;
+    this->config2["b_slot3"] = b_slot3;
+
+    this->config2["dur_slot1"] = dur_slot1;
+    this->config2["dur_slot2"] = dur_slot2;
+    this->config2["dur_slot3"] = dur_slot3;
+
 }
 
 void Gisela::writeLog(std::string message) {

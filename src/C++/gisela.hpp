@@ -20,6 +20,7 @@
 #include "UnixSocket.h"
 #include "restapi.hpp"
 #define CONFIG_FILE "/home/pi/Giesela/gSockets/config.txt"
+#define CONFIG_JSON "/home/pi/Giesela/var/conf/config.json"
 #define LOG_FILE "/home/pi/Giesela/gSockets/log.txt"
 #define SOCKET_PATH "/home/pi/Giesela/gSockets/gSocketCpp.sock"
 #define LPERM 0.34 //Evtl anpassen auf 0.36 nach 1 Tag test
@@ -29,6 +30,7 @@
 
 
 
+using json = nlohmann::json;
 
 
 class Tank{
@@ -53,6 +55,8 @@ private:
         std::vector<int> unseenMailId;
         int giessdauer_s;
 		int flag_stop_giessen;
+
+		json config2;
 
 		int got_trigger_mail;
 		std::vector<std::string> trustyMailAdresses;
@@ -79,8 +83,11 @@ public:
 	std::map <std::string, std::string> getConfig();
 	void writeConfig();
 	void readConfig();
+	json readJsonConfigFromDisk();
+	void writeJsonConfigToDisk();
+	json getJsonConfig();
 	void writeLog(std::string message);
-	void set_current_config_via_api(std::string slot1, std::string slot2, std::string slot3);
+	void set_current_config_via_api(bool b_slot1, bool b_slot2, bool b_slot3, std::string t_slot1, std::string t_slot2, std::string t_slot3, int dur_slot1, int dur_slot2, int dur_slot3);
 
 	// Funktionen definiert in Mailinterface.cpp
 	int checkForNewMails();

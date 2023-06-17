@@ -19,6 +19,7 @@ int main(){
 	std::cout << "initializing and reading config file..."<< std::endl;
 	gisela.readConfig();
    	gisela.getConfig();
+   	gisela.readJsonConfigFromDisk();
 
 	std::cout << "starting API server..." << std::endl;
     gisela.restApi->startRestApi();

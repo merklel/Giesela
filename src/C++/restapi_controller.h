@@ -74,9 +74,16 @@ public:
         auto dto = MyDto::createShared();
         dto->statusCode = 200;
         dto->message = "settings saved!";
-        gisela->set_current_config_via_api(settingsDto->get_slot_string(1),
-                                           settingsDto->get_slot_string(2),
-                                           settingsDto->get_slot_string(3));
+        gisela->set_current_config_via_api(settingsDto->b_slot1.getValue(false),
+                                           settingsDto->b_slot2.getValue(false),
+                                           settingsDto->b_slot3.getValue(false),
+                                           settingsDto->t_slot1.getValue("10:00"),
+                                           settingsDto->t_slot1.getValue("10:00"),
+                                           settingsDto->t_slot1.getValue("10:00"),
+                                           settingsDto->duration_slot1.getValue(5),
+                                           settingsDto->duration_slot2.getValue(5),
+                                           settingsDto->duration_slot3.getValue(5));
+        gisela->writeJsonConfigToDisk();
         return createDtoResponse(Status::CODE_200, dto);
     }
 

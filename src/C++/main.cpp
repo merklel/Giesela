@@ -17,9 +17,10 @@ int main(){
 	//std::cout << "Status: " << gisela.getGiessStatus() << " letzes Giessen: " << ctime(gisela.getLastGiessZeit()) << std::endl;
 
 	std::cout << "initializing and reading config file..."<< std::endl;
+	gisela.readJsonConfigFromDisk();
 	gisela.readConfig();
    	gisela.getConfig();
-   	gisela.readJsonConfigFromDisk();
+
 
 	std::cout << "starting API server..." << std::endl;
     gisela.restApi->startRestApi();

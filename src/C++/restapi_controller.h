@@ -90,11 +90,17 @@ public:
     ADD_CORS(getSettings, "*", "POST, GET", "DNT, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control, Content-Type, Range")
     ENDPOINT("GET", "/getSettings", getSettings) {
         auto dto = GetSettingsDto::createShared();
-        auto conf = gisela->config;
-        dto->t_slot1 = gisela->config["time1"];
-        dto->t_slot2 = gisela->config["time2"];
-        dto->t_slot3 = gisela->config["time3"];
-        dto->lastWater = gisela->config["lastWater"];
+        json conf = gisela->getJsonConfig();
+        dto->t_slot1 = conf["t_slot1"].template get<std::string>();
+        dto->t_slot2 = conf["t_slot2"].template get<std::string>();
+        dto->t_slot3 = conf["t_slot3"].template get<std::string>();
+        dto->b_slot1 = conf["b_slot1"].template get<bool>();
+        dto->b_slot2 = conf["b_slot2"].template get<bool>();
+        dto->b_slot3 = conf["b_slot3"].template get<bool>();
+        dto->duration_slot1 = conf["duration_slot1"].template get<int>();
+        dto->duration_slot2 = conf["duration_slot2"].template get<int>();
+        dto->duration_slot3 = conf["duration_slot3"].template get<int>();
+        dto->lastWater = conf["lastWater"].template get<std::string>();
         return createDtoResponse(Status::CODE_200, dto);
     }
 };

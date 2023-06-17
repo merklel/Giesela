@@ -168,9 +168,9 @@ void Gisela::set_current_config_via_api(bool b_slot1, bool b_slot2, bool b_slot3
     this->config2["b_slot2"] = b_slot2;
     this->config2["b_slot3"] = b_slot3;
 
-    this->config2["dur_slot1"] = dur_slot1;
-    this->config2["dur_slot2"] = dur_slot2;
-    this->config2["dur_slot3"] = dur_slot3;
+    this->config2["duration_slot1"] = dur_slot1;
+    this->config2["duration_slot2"] = dur_slot2;
+    this->config2["duration_slot3"] = dur_slot3;
 
 }
 

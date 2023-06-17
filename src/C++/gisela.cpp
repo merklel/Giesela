@@ -489,7 +489,6 @@ void Gisela::stopGiessen() {
         std::vector<int> dur_slots = this->get_dur_slots();
 
         for(int i=0; i < 3; ++i){
-            //struct tm * gmtime (const time_t * timer);
             if (gmtime(&times[i])->tm_hour == hour && gmtime(&times[i])->tm_min == minute && b_slots[i]){
                 if (trigger_regel == 0){
                     std::cout << "From new config: Slot " << i << " aktiv!" << std::endl;
@@ -504,8 +503,6 @@ void Gisela::stopGiessen() {
             this->startGiessen(gies_t_min * 60);
             usleep(2000000); // 2s warten zur entprellung des threads
         }
-
-
     }
 }
 

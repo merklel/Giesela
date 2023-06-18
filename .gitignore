@@ -4,4 +4,5 @@ raspi_image/**
 **/cmake-build-debug/**
 **/gSockets/**
 
-var/**
+var/conf/config.json
+var/log/log.json

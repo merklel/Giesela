@@ -86,6 +86,7 @@ public:
         gisela->writeJsonConfigToDisk();
 
         if (settingsDto->waterReset.getValue(false) == true){
+            std::cout << "Setting level to :" << TANKVOLUME <<  " l" << std::endl;
             gisela->tank->setVolume(TANKVOLUME);
         }
 

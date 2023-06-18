@@ -507,8 +507,6 @@ void Gisela::stopGiessen() {
 
         // --- New: Aus json config ---------------------------------------------------
         // automatisches giessen aus config2 lesen
-
-        this->readJsonConfigFromDisk();
         std::vector<tm> times = this->get_times();
         std::vector<bool> b_slots = this->get_b_slots();
         std::vector<int> dur_slots = this->get_dur_slots();

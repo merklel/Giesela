@@ -105,8 +105,8 @@ public:
         dto->duration_slot1 = conf["duration_slot1"].template get<int>();
         dto->duration_slot2 = conf["duration_slot2"].template get<int>();
         dto->duration_slot3 = conf["duration_slot3"].template get<int>();
-        dto->lastWater = conf["lastWater"].template get<float>();
-        std::cout  <<  "level: " << conf["lastWater"].template get<float>() << std::endl;
+        dto->lastWater = conf["lastWater"].template get<int>();
+        dto->level = conf["level"].template get<float>();
         return createDtoResponse(Status::CODE_200, dto);
     }
 

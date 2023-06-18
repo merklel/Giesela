@@ -125,7 +125,7 @@
               $("#duration_slot1").val(result.duration_slot1)
               $("#duration_slot2").val(result.duration_slot2)
               $("#duration_slot3").val(result.duration_slot3)
-              $("#level").html(result.level)
+              $("#level").html(Math.round(100*result.level)/100)
 
               var a = new Date(result.lastWater * 1000);
               $("#lastWater").html(a.getDate() + "." + a.getMonth() + " " + a.getHours() + ":" + a.getMinutes())

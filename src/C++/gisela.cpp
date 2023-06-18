@@ -264,6 +264,7 @@ void Gisela::funktionGiessen(int seconds) {
         clock_gettime(CLOCK_REALTIME, &t);
         lastGiessTime = t.tv_sec;
         this->config2["lastWater"] = lastGiessTime;
+        this->writeJsonConfigToDisk();
 
         std::chrono::steady_clock::time_point t_start = std::chrono::steady_clock::now();
         giessenActive = 1;

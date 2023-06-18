@@ -57,8 +57,6 @@ private:
         int giessdauer_s;
 		int flag_stop_giessen;
 
-		json config2;
-
 		int got_trigger_mail;
 		std::vector<std::string> trustyMailAdresses;
 
@@ -71,6 +69,7 @@ public:
 	RestApi * restApi;
 	std::map <std::string, std::string> config;
 	json mailCreds;
+	json config2;
 
 	//Konstruktor
 	Gisela();

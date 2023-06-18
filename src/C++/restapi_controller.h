@@ -88,6 +88,7 @@ public:
         if (settingsDto->waterReset.getValue(false) == true){
             std::cout << "Setting level to :" << TANKVOLUME <<  " l" << std::endl;
             gisela->tank->setVolume(TANKVOLUME);
+            gisela->config2["level"] = TANKVOLUME;
         }
 
         return createDtoResponse(Status::CODE_200, dto);

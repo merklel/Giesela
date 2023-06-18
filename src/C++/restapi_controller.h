@@ -84,6 +84,11 @@ public:
                                            settingsDto->duration_slot2.getValue(5),
                                            settingsDto->duration_slot3.getValue(5));
         gisela->writeJsonConfigToDisk();
+
+        if (settingsDto->waterReset.getValue(false) == true){
+            gisela->tank->setVolume(TANKVOLUME);
+        }
+
         return createDtoResponse(Status::CODE_200, dto);
     }
 

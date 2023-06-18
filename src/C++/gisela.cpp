@@ -213,6 +213,7 @@ std::vector<time_t> Gisela::get_times(){
     times.push_back(maketime(this->config2["t_slot1"]));
     times.push_back(maketime(this->config2["t_slot2"]));
     times.push_back(maketime(this->config2["t_slot3"]));
+    std::cout << "Inside gettimes: " << times[1] << std::endl;
     return times;
 }
 
@@ -493,7 +494,7 @@ void Gisela::stopGiessen() {
         for(int i=0; i < 3; ++i){
             if (i==1){
                 std::cout << "i: " << i << "------------------------" << std::endl;
-                std::cout << "set H: " << gmtime(&times[i])->tm_hour << ", " << times[i] <<  " Ist: " << hour << " Config: " << this->config2["t_slot1"] << " raw times[i]: " << &times[i] << std::endl;
+                std::cout << "set H: " << gmtime(&times[i])->tm_hour << ", " << times[i] <<  " Ist: " << hour << " Config: " << this->config2["t_slot1"] << " raw times[i]: " << times[i] << std::endl;
                 std::cout << "set M: " << gmtime(&times[i])->tm_min << " Ist: " << minute << std::endl;
                 std::cout << "set B: " << b_slots[i] << std::endl;
                 std::cout << "--------------------------------------" << std::endl;

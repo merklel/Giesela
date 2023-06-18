@@ -1,1 +1,1 @@
-sudo .~/Giesela/src/C++/build/gisela
+sudo ~/Giesela/src/C++/build/gisela

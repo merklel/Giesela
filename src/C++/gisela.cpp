@@ -190,6 +190,20 @@ void Gisela::writeLog(std::string message) {
     file.close();
 }
 
+std::string Gisela::getLog(){
+    std::string line;
+    std::ifstream logfile_f (LOG_FILE);
+    std::string file_contents;
+    if (logfile_f.is_open()){
+        while ( getline (logfile_f,line)){
+            file_contents += line;
+            file_contents.push_back('\n');
+        }
+        logfile_f.close();
+    }
+    return file_contents;
+}
+
 std::map<std::string, std::string> Gisela::getConfig() {
     //Print out config map
     std::cout << "config map contains:" << std::endl;

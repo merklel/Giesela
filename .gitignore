@@ -3,3 +3,5 @@ raspi_image/**
 **/build/**
 **/cmake-build-debug/**
 **/gSockets/**
+
+var/**

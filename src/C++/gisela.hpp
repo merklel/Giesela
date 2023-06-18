@@ -23,6 +23,7 @@
 #define CONFIG_JSON "/home/pi/Giesela/var/conf/config.json"
 #define LOG_FILE "/home/pi/Giesela/var/log/log.txt"
 #define SOCKET_PATH "/home/pi/Giesela/gSockets/gSocketCpp.sock"
+#define MAIL_CREDS_FILE "/home/pi/Giesela/var/security/mailCreds.json"
 #define LPERM 0.34 //Evtl anpassen auf 0.36 nach 1 Tag test
 #define LPERS (0.34/60)
 #define TANKVOLUME 30
@@ -69,6 +70,7 @@ public:
 	Hardware * hardware;
 	RestApi * restApi;
 	std::map <std::string, std::string> config;
+	json mailCreds;
 
 	//Konstruktor
 	Gisela();
@@ -103,6 +105,7 @@ public:
     void startMailServer();
     int getTriggerMailStatus();
     void resetTriggerMailStatus();
+    void readMailCreds();
 
 
     void funktionGiessen(int seconds);

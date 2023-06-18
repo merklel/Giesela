@@ -6,3 +6,4 @@ raspi_image/**
 
 var/conf/config.json
 var/log/log.json
+**/var/**

@@ -1,7 +1,7 @@
 #include "gisela.hpp"
 
-#define GMAIL_ADDRESS "test@gmail.com"
-#define GMAIL_PW "superscret"
+std::string GMAIL_ADDRESS = "";
+std::string GMAIL_PW = "";
 
 
 static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp) {
@@ -18,8 +18,8 @@ int Gisela::checkForNewMails() {
 
     if (curl) {
         /* Set username and password */
-        curl_easy_setopt(curl, CURLOPT_USERNAME, GMAIL_ADDRESS);
-        curl_easy_setopt(curl, CURLOPT_PASSWORD, GMAIL_PW);
+        curl_easy_setopt(curl, CURLOPT_USERNAME, GMAIL_ADDRESS.c_str());
+        curl_easy_setopt(curl, CURLOPT_PASSWORD, GMAIL_PW.c_str());
 
         /* This will fetch message 1 from the user's inbox */
         curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "SEARCH UNSEEN");
@@ -76,7 +76,13 @@ int Gisela::checkForNewMails() {
     return 0;
 }
 
-
+void Gisela::readMailCreds(){
+    std::ifstream f(MAIL_CREDS_FILE);
+    json data = json::parse(f);
+    GMAIL_ADDRESS = data["mail"].template get<std::string>();
+    GMAIL_PW = data["password"].template get<std::string>();
+    this->mailCreds = data;
+}
 
 int Gisela::readMails() {
 
@@ -94,8 +100,8 @@ int Gisela::readMails() {
 
             for(int i=0; i < unseenMailId.size(); ++i) {
                 /* Set username and password */
-                curl_easy_setopt(curl, CURLOPT_USERNAME, GMAIL_ADDRESS);
-                curl_easy_setopt(curl, CURLOPT_PASSWORD, GMAIL_PW);
+                curl_easy_setopt(curl, CURLOPT_USERNAME, GMAIL_ADDRESS.c_str());
+                curl_easy_setopt(curl, CURLOPT_PASSWORD, GMAIL_PW.c_str());
 
                 /* This will fetch message 1 from the user's inbox */
                 //curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "SEARCH UNSEEN");
@@ -165,6 +171,8 @@ int Gisela::readMails() {
 
 
 void Gisela::MailServer_thread(){
+
+    this->readMailCreds();
 
     while(true){
 

@@ -110,6 +110,13 @@ public:
         logResponse->logContent =  gisela->getLog();
         return createDtoResponse(Status::CODE_200, logResponse);
     }
+
+    ADD_CORS(health, "*", "POST, GET", "DNT, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control, Content-Type, Range")
+    ENDPOINT("GET", "/health", health) {
+        auto dto = MyDto::createShared();
+        dto->statusCode = 200;
+        return createDtoResponse(Status::CODE_200, dto);
+    }
 };
 
 #include OATPP_CODEGEN_END(ApiController) //<-- End Codegen

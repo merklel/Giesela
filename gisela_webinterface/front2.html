@@ -16,6 +16,7 @@
 				
 				<div class="status">
 					<h2>Status</h2>
+          <p><span hidden="true" id="online" style="color:#1faa36">online</span><span  hidden="false" id="offline" style="color:#ff5100">offline</span><br/></p>
 					<p><b>letzter Gießzeitpunkt:</b> <br/>
 					<span id="lastWater"></span>
 					<p><b>Wasserstand:</b> <span id="level"></span> Wasserstand in l</p>
@@ -131,6 +132,28 @@
       })
     }
 
+    function getHealth(){
+      $.ajax({
+          type: "GET",
+          async: false,
+          url: "http://" + api_url + ":" + api_port + "/health",
+          timeout: 1,
+          headers: {
+          },
+          success: function(result) {
+              console.log("Giesela online!")
+              $("#online").prop("hidden", false);
+              $("#offline").prop("hidden", true);
+              
+          },
+          error: function(request, status, error) {
+            console.log("Giesela offline!")
+            $("#online").prop("hidden", true);
+            $("#offline").prop("hidden", false);
+          }
+      })
+    }
+
     var settingsForm = document.getElementById("settingsForm");
     console.log(settingsForm)
     settingsForm.addEventListener("submit", save_settings);
@@ -169,6 +192,9 @@
 
   getLog();
   getSettings();
+  getHealth();
+
+  setInterval(getHealth,5000)
 
 
   </script>

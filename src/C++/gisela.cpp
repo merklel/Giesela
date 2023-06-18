@@ -263,6 +263,7 @@ void Gisela::funktionGiessen(int seconds) {
         struct timespec t;
         clock_gettime(CLOCK_REALTIME, &t);
         lastGiessTime = t.tv_sec;
+        this->config2["lastWater"] = lastGiessTime;
 
         std::chrono::steady_clock::time_point t_start = std::chrono::steady_clock::now();
         giessenActive = 1;
@@ -301,6 +302,7 @@ void Gisela::funktionGiessen(int seconds) {
        
         //save config lastWater
         this->writeConfig();
+        this->writeJsonConfigToDisk();
 
 
     //--------- if argument > 20 min --> direct abort

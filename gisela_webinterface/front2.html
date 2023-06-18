@@ -17,8 +17,8 @@
 				<div class="status">
 					<h2>Status</h2>
 					<p><b>letzter Gießzeitpunkt:</b> <br/>
-					HERE GOES THE Gieszeitpunkt</p>
-					<p><b>Wasserstand:</b> Wasserstand in l</p>
+					<span id="lastWater"></span>
+					<p><b>Wasserstand:</b> <span id="level"></span> Wasserstand in l</p>
 				</div>
 				
 				<div class="einstellungen">
@@ -27,9 +27,9 @@
           <b>Automatisches Gie&szligen zu folgenden Zeitpunkten:</b>
 					<form id="settingsForm">
 					<p>
-					Gie&szlig-Zeitpunkt 1:<input type="checkbox" name="b_slot1"><input type="time" name="t_slot1" value="10:00"> Dauer: <input type="number" min=1 max=20 name="duration_slot1" value=5> Minuten<br/>
-					Gie&szlig-Zeitpunkt 2:<input type="checkbox" name="b_slot2"><input type="time" name="t_slot2" value="10:00"> Dauer: <input type="number" min=1 max=20 name="duration_slot2" value=5> Minuten<br/>
-					Gie&szlig-Zeitpunkt 3:<input type="checkbox" name="b_slot3"><input type="time" name="t_slot3" value="10:00"> Dauer: <input type="number" min=1 max=20 name="duration_slot3" value=5> Minuten<br/>
+					Gie&szlig-Zeitpunkt 1:<input type="checkbox" name="b_slot1" id="b_slot1"><input type="time" name="t_slot1" value="10:00" id="t_slot1"> Dauer: <input type="number" min=1 max=20 name="duration_slot1" id="duration_slot1" value=5> Minuten<br/>
+					Gie&szlig-Zeitpunkt 2:<input type="checkbox" name="b_slot2" id="b_slot2"><input type="time" name="t_slot2" value="10:00" id="t_slot2"> Dauer: <input type="number" min=1 max=20 name="duration_slot2" id="duration_slot2" value=5> Minuten<br/>
+					Gie&szlig-Zeitpunkt 3:<input type="checkbox" name="b_slot3" id="b_slot3"><input type="time" name="t_slot3" value="10:00" id="t_slot3"> Dauer: <input type="number" min=1 max=20 name="duration_slot3" id="duration_slot3" value=5> Minuten<br/>
 					<p>
 					Wasserstand zur&uuml;cksetzen: <input type="checkbox" name="waterReset" id="waterReset"><br/>
 					<input type="submit" value="speichern">
@@ -41,8 +41,10 @@
 
 				<div class="einstellungen">
 					<h2>Log-File</h2>
-					<div class=logfile>
+					<div class="log">
+            <span id="log">
             HERE WILL THE LOGFILE BE!
+          </span>
 					</div>
 				</div>
 
@@ -103,8 +105,30 @@
               console.log("settings got saved", result)
           }
       })
+    }
 
-      
+    function getSettings(){
+      $.ajax({
+          type: "GET",
+          async: false,
+          url: "http://" + api_url + ":" + api_port + "/getSettings",
+          headers: {
+          },
+          success: function(result) {
+              $("#b_slot1").prop("checked", result.b_slot1)
+              $("#b_slot2").prop("checked", result.b_slot2)
+              $("#b_slot3").prop("checked", result.b_slot3)
+              $("#t_slot1").val(result.t_slot1)
+              $("#t_slot2").val(result.t_slot2)
+              $("#t_slot3").val(result.t_slot3)
+              $("#duration_slot1").val(result.duration_slot1)
+              $("#duration_slot2").val(result.duration_slot2)
+              $("#duration_slot3").val(result.duration_slot3)
+              $("#lastWater").html(result.lastWater)
+              $("#level").html(result.level)
+              console.log(result)
+          }
+      })
     }
 
     var settingsForm = document.getElementById("settingsForm");
@@ -126,6 +150,25 @@
           }
       })
   }
+
+  function getLog() {
+      $.ajax({
+          type: "GET",
+          async: false,
+          url: "http://" + api_url + ":" + api_port + "/getLog",
+          headers: {
+          },
+          success: function(result) {
+              console.log("giessen result: ", result)
+
+              $("#log").html(result.logContent)
+              console.log(result)
+          }
+      })
+  }
+
+  getLog();
+  getSettings();
 
 
   </script>

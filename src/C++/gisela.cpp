@@ -491,11 +491,13 @@ void Gisela::stopGiessen() {
         std::vector<int> dur_slots = this->get_dur_slots();
 
         for(int i=0; i < 3; ++i){
-            std::cout << "i: " << i << "------------------------" << std::endl;
-            std::cout << "set H: " << gmtime(&times[i])->tm_hour << ", " << times[i] <<  " Ist: " << hour << std::endl;
-            std::cout << "set M: " << gmtime(&times[i])->tm_min << " Ist: " << minute << std::endl;
-            std::cout << "set B: " << b_slots[i] << std::endl;
-            std::cout << "--------------------------------------" << std::endl;
+            if (i==1){
+                std::cout << "i: " << i << "------------------------" << std::endl;
+                std::cout << "set H: " << gmtime(&times[i])->tm_hour << ", " << times[i] <<  " Ist: " << hour << "Config: " << this->config2["t_slot1"] << std::endl;
+                std::cout << "set M: " << gmtime(&times[i])->tm_min << " Ist: " << minute << std::endl;
+                std::cout << "set B: " << b_slots[i] << std::endl;
+                std::cout << "--------------------------------------" << std::endl;
+            }
             if (gmtime(&times[i])->tm_hour == hour && gmtime(&times[i])->tm_min == minute && b_slots[i]){
                 if (trigger_regel == 0){
                     std::cout << "From new config: Slot " << i << " aktiv!" << std::endl;

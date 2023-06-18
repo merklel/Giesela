@@ -2,3 +2,7 @@ raspi_image/**
 .idea/**
 **/build/**
 **/cmake-build-debug/**
+**/gSockets/**
+
+var/conf/config.json
+var/log/log.json

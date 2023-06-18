@@ -213,7 +213,7 @@ std::vector<time_t> Gisela::get_times(){
     times.push_back(maketime(this->config2["t_slot1"]));
     times.push_back(maketime(this->config2["t_slot2"]));
     times.push_back(maketime(this->config2["t_slot3"]));
-    std::cout << "Inside gettimes: " << times[1] << std::endl;
+    std::cout << "Inside gettimes: " << times[1] << " res maketime: "<< maketime(this->config2["t_slot1"]) << " input: " << this->config2["t_slot1"]<< std::endl;
     return times;
 }
 

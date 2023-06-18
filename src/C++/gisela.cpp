@@ -207,13 +207,18 @@ time_t maketime(std::string input){
     time_t t = mktime(&tm);
     return t;
 }
+struct tm maketime2(std::string input){
+    struct tm tm;
+    strptime(input.c_str(), "%H:%M", &tm);
+    return tm;
+}
 
 std::vector<time_t> Gisela::get_times(){
     std::vector<time_t> times;
     times.push_back(maketime(this->config2["t_slot1"]));
     times.push_back(maketime(this->config2["t_slot2"]));
     times.push_back(maketime(this->config2["t_slot3"]));
-    std::cout << "Inside gettimes: " << times[1] << " res maketime: "<< maketime(this->config2["t_slot1"]) << " input: " << this->config2["t_slot1"]<< std::endl;
+    std::cout << "Inside gettimes: " << times[1] << " res maketime2.hour: "<< maketime2(this->config2["t_slot1"]).tm_hour << " input: " << this->config2["t_slot1"]<< std::endl;
     return times;
 }
 

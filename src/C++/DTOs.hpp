@@ -40,6 +40,11 @@ class GetSettingsDto:public oatpp::DTO {
 
 };
 
+class LogResponse: public oatpp::DTO {
+    DTO_INIT(LogResponse, DTO);
+    DTO_FIELD(String, logContent);
+};
+
 class SettingsDto:public oatpp::DTO {
     DTO_INIT(SettingsDto, DTO);
     DTO_FIELD(Boolean, b_slot1);

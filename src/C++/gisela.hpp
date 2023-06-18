@@ -21,7 +21,7 @@
 #include "restapi.hpp"
 #define CONFIG_FILE "/home/pi/Giesela/gSockets/config.txt"
 #define CONFIG_JSON "/home/pi/Giesela/var/conf/config.json"
-#define LOG_FILE "/home/pi/Giesela/gSockets/log.txt"
+#define LOG_FILE "/home/pi/Giesela/var/log/log.txt"
 #define SOCKET_PATH "/home/pi/Giesela/gSockets/gSocketCpp.sock"
 #define LPERM 0.34 //Evtl anpassen auf 0.36 nach 1 Tag test
 #define LPERS (0.34/60)
@@ -88,6 +88,20 @@ public:
 	json getJsonConfig();
 	void writeLog(std::string message);
 	void set_current_config_via_api(bool b_slot1, bool b_slot2, bool b_slot3, std::string t_slot1, std::string t_slot2, std::string t_slot3, int dur_slot1, int dur_slot2, int dur_slot3);
+
+	std::string getLog(){
+	    std::string line;
+	    std::ifstream logfile_f (LOG_FILE);
+	    std::string file_contents;
+	    if (logfile_f.is_open()){
+	        while ( getline (logfile_f,line)){
+	            file_contents += line;
+	            file_contents.push_back('\n');
+	        }
+	        logfile_f.close();
+	    }
+	    return file_contents;
+	}
 
 	// Funktionen definiert in Mailinterface.cpp
 	int checkForNewMails();

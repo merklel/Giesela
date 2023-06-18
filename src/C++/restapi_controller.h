@@ -103,6 +103,13 @@ public:
         dto->lastWater = conf["lastWater"].template get<std::string>();
         return createDtoResponse(Status::CODE_200, dto);
     }
+
+    ADD_CORS(getLog, "*", "POST, GET", "DNT, User-Agent, X-Requested-With, If-Modified-Since, Cache-Control, Content-Type, Range")
+    ENDPOINT("GET", "/getLog", getLog) {
+        auto logResponse = LogResponse::createShared();
+        logResponse->logContent =  gisela->getLog();
+        return createDtoResponse(Status::CODE_200, logResponse);
+    }
 };
 
 #include OATPP_CODEGEN_END(ApiController) //<-- End Codegen

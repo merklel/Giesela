@@ -35,7 +35,7 @@ class GetSettingsDto:public oatpp::DTO {
     DTO_FIELD(Int32, duration_slot1);
     DTO_FIELD(Int32, duration_slot2);
     DTO_FIELD(Int32, duration_slot3);
-    DTO_FIELD(String, lastWater);
+    DTO_FIELD(Int32 , lastWater);
     DTO_FIELD(Int32 , level);
 
 };

@@ -9,5 +9,6 @@
   "duration_slot2": 5,
   "duration_slot3": 5,
   "waterReset": true,
+  "level": 0,
   "lastWater": 0
 }

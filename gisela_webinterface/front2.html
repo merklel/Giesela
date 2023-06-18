@@ -8,7 +8,7 @@
 	</head>
 	<body>	
 		<div class="container">
-				<h1 id="ueberschrift"> Gie&szligela gie&szligt den Balkon</h1><br/><br/>
+				<h1 id="ueberschrift"> Gi&szligela gie&szligt den Balkon</h1><br/><br/>
 				
 				<button class="button1" name="jetztGiesen" value=1 onclick="buttonGiessen('1')">jetzt Gie&szligen!</button>
 				<br/>
@@ -17,7 +17,7 @@
 				<div class="status">
 					<h2>Status</h2>
           <p><span hidden="true" id="online" style="color:#1faa36; font-weight: bold;">online</span><span  hidden="false" id="offline" style="color:#ff5100">offline</span><br/></p>
-					<p><b>letzter Gießzeitpunkt:</b> <br/>
+					<p><b>letzter Gie&szligzeitpunkt:</b> <br/>
 					<span id="lastWater"></span>
 					<p><b>Wasserstand:</b> <span id="level"></span> Wasserstand in l</p>
 				</div>
@@ -125,8 +125,12 @@
               $("#duration_slot1").val(result.duration_slot1)
               $("#duration_slot2").val(result.duration_slot2)
               $("#duration_slot3").val(result.duration_slot3)
-              $("#lastWater").html(result.lastWater)
               $("#level").html(result.level)
+
+              var a = new Date(result.lastWater * 1000);
+              $("#lastWater").html(a.getDate() + "." + a.getMonth() + " " + a.getHours() + ":" + a.getMinutes())
+
+
               console.log(result)
           }
       })

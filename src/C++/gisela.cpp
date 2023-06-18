@@ -101,6 +101,7 @@ void Gisela::writeConfig() {
     //Update config FElder
     //config["time3"] = "2";
     config["level"] = std::to_string(this->tank->getVolume());
+    config2["level"]= this->tank->getVolume();
     std::string lgz = ctime(this->getLastGiessZeit());
     config["lastWater"] = lgz.substr(0, lgz.size()-1);
 

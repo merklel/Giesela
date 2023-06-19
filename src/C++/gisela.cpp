@@ -324,17 +324,12 @@ void Gisela::startGiessen(int giessdauer_s_arg) {
         dauer_giessen_sekunden = giessdauer_s_arg; // Nehme argument als giessdauer, wenn größer null
     }
 
-    this->readConfig();
-    //std::map<std::string, std::string> config = this->getConfig();
-    std::cout << "letztes mal giessen: " << config.at("lastWater") << std::endl;
-
-
     // Logik last water hier!
     struct tm ts_lastWater;
     time_t lastWater = (time_t)this->config2["lastWater"].template get<int>();
     ts_lastWater = *localtime(&lastWater);
 
-    std::cout << "lastWater: "<<ts_lastWater.tm_hour << std::endl;
+    std::cout << "lastWater: "<< ts_lastWater.tm_hour << ":"<< ts_lastWater.tm_min <<  std::endl;
 
     std::string lw = config.at("lastWater");
     // Hole aktuelle zeit

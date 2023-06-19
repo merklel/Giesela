@@ -371,6 +371,7 @@ void Gisela::startGiessen(int giessdauer_s_arg) {
     }else{
         std::cout << "Letztes Giessen ist noch nicht lange genug her!" << std::endl;
         this->writeLog("giessen abgebrochen, noch nicht lange genug her...");
+        this->trigger_regel = 0;
     }
 }
 

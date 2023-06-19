@@ -345,14 +345,14 @@ void Gisela::startGiessen(int giessdauer_s_arg) {
     int day 	= aTime->tm_yday;	
 
     // finde tag in lw aus config
-    size_t pos = lw.find(":");
-    int lw_day = std::stoi(lw.substr(pos-5,2));
-    // finde uhrzeit in lw aus config
-    pos = lw.find(":");
-    int lw_hour = std::stoi(lw.substr(pos-2,2));
-    int lw_minute = std::stoi(lw.substr(pos+1,2));
+//    size_t pos = lw.find(":");
+//    int lw_day = std::stoi(lw.substr(pos-5,2));
+//    // finde uhrzeit in lw aus config
+//    pos = lw.find(":");
+//    int lw_hour = std::stoi(lw.substr(pos-2,2));
+//    int lw_minute = std::stoi(lw.substr(pos+1,2));
 
-    if ((std::abs(lw_hour - hour) >= 2) || (lw_day != day)){ // Max X mal pro stunde, oder an einem anderen Tag
+    if ((std::abs(ts_lastWater.tm_hour - hour) >= 2) || (ts_lastWater.tm_yday != day)){ // Max X mal pro stunde, oder an einem anderen Tag
 
         if (giessenActive == 0){
 
@@ -422,28 +422,28 @@ void Gisela::stopGiessen() {
 
 
         // Auf Socket == 2 reagieren und Config neu einlesen!
-        if (socketdata.compare("2") == 0){
-            socketdata.clear();
-            this->readConfig();
-            this->getConfig();
-            if (config["waterReset"] == "1"){
-                config["waterReset"] = "0";
-                std::cout << "Wassertank auf 30l resettet! " << std::endl;
-                this->tank->setVolume(TANKVOLUME);
-                this->writeConfig();
-            }
-            this->writeLog("Socket==2: Neue Config eingelesen.");
-        }
+//        if (socketdata.compare("2") == 0){
+//            socketdata.clear();
+//            this->readConfig();
+//            this->getConfig();
+//            if (config["waterReset"] == "1"){
+//                config["waterReset"] = "0";
+//                std::cout << "Wassertank auf 30l resettet! " << std::endl;
+//                this->tank->setVolume(TANKVOLUME);
+//                this->writeConfig();
+//            }
+//            this->writeLog("Socket==2: Neue Config eingelesen.");
+//        }
 
 
         // Gießbedingungen checken 
         // 1. Wenn socket == 1
-        if (socketdata.compare("1") == 0){
-            socketdata.clear();
-            this->startGiessen(0);
-            this->writeLog("Socket==1: Giessen getriggert.");
-            usleep(1000000); // 1s warten zur entprellung des threads
-        }
+//        if (socketdata.compare("1") == 0){
+//            socketdata.clear();
+//            this->startGiessen(0);
+//            this->writeLog("Socket==1: Giessen getriggert.");
+//            usleep(1000000); // 1s warten zur entprellung des threads
+//        }
 
         // 2. Wenn gruener Button kurz gedrueckt wird, giessen
         if (button_gruen_status == 1){
